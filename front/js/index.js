@@ -55,8 +55,8 @@ function change_password() {
 function set_show_urls() {
   console.log($("#txt_set_show_appids").val());
   console.log($("#txt_set_show_url").val());
-  if ($("#txt_set_show_appids").val() == '' || $("#txt_set_show_url").val() == '') {
-    alert("AppID或跳转网址不能为空");
+  if ($("#txt_set_show_appids").val() == '') {
+    alert("AppID不能为空");
   } else {
     var requestData = {
       "appids": $("#txt_set_show_appids").val(),
@@ -80,6 +80,44 @@ function set_show_urls() {
           location.href="./login.html";
         } else if (rt_code == 1) {
           alert("设置跳转网址成功");
+          $('#tb_departments').bootstrapTable('refresh');
+        }
+      },
+      error : function() {
+        toastr.error('Error');
+      },
+      complete : function() {
+      }
+    });
+  }
+}
+
+function set_not_show() {
+  console.log($("#txt_set_not_show_appids").val());
+  if ($("#txt_set_not_show_appids").val() == '') {
+    alert("AppID不能为空");
+  } else {
+    var requestData = {
+      "appids": $("#txt_set_not_show_appids").val(),
+    };
+
+    $.ajax({
+      type : "get",
+      contentType : "text/html;charset=utf-8",
+      url : "../back/set_appids_not_show.php",
+      data : requestData,
+      dataType : "json",
+      success : function(data) {
+        console.log(data);
+        var rt_code = data.rt_code;
+        if (rt_code == -1) {
+          alert("Something wrong, please contact dev.")
+        } else if (rt_code == 0) {
+          alert("Something wrong, please contact dev.")
+        } else if (rt_code == -2) {
+          location.href="./login.html";
+        } else if (rt_code == 1) {
+          alert("设置不跳转成功");
           $('#tb_departments').bootstrapTable('refresh');
         }
       },
