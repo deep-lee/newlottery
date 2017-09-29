@@ -133,6 +133,7 @@ function set_not_show() {
 var responseHandler = function (data) {
     console.log(data);
     if (data.rt_code == 1) {
+      data.rt_data.rows = data.rt_data.rows || [];
       return data.rt_data;
     } else {
       location.href="./login.html";
