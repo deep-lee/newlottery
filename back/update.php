@@ -32,7 +32,7 @@ if (check_user_login_out_of_time() == false) {
     $result = mysql_query($sql);
     // remove from memcache
     $key=md5($appid);
-    $mem->delete($key)
+    $mem->delete($key);
     if ($result == false) {
       $returnData['rt_code'] = 0;
     } else {
