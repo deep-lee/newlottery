@@ -192,6 +192,9 @@ var TableInit = function () {
                 field: 'comment',
                 title: '备注'
             }, {
+                field: 'request_num',
+                title: '请求次数'
+            }, {
                 field: 'createAt',
                 title: '创建时间'
             }, {
