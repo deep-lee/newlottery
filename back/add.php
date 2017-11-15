@@ -23,13 +23,25 @@ if (check_user_login_out_of_time() == false) {
 
     // echo $url." ".$appid." ".$type." ".$show." ".comment." ".$createAt;
 
-    $sql = "insert into lottery(url,show_url,type,appid,updateAt,comment) values
-            ('$url', $show, '$type', '$appid', '$createAt', '$comment')";
-    $result = mysql_query($sql);
-    if ($result == false) {
+    // 首先检查appid是否重复
+    $sql_check_dup = "select * from lottery where appid='$appid'";
+    $result_check_dup = mysql_query($sql_check_dup);
+    if ($result_check_dup == false) {
       $returnData['rt_code'] = 0;
     } else {
-      $returnData['rt_code'] = 1;
+      if (mysql_num_rows($result_check_dup) != 0) {
+        // 有重复的appid
+        $returnData['rt_code'] = 2;
+      } else {
+        $sql = "insert into lottery(url,show_url,type,appid,updateAt,comment) values
+                ('$url', $show, '$type', '$appid', '$createAt', '$comment')";
+        $result = mysql_query($sql);
+        if ($result == false) {
+          $returnData['rt_code'] = 0;
+        } else {
+          $returnData['rt_code'] = 1;
+        }
+      }
     }
   } else {
     $returnData['rt_code'] = -1;

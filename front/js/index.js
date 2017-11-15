@@ -306,13 +306,16 @@ var ButtonInit = function () {
                       alert("Something wrong, please contact dev.")
                     } else if (rt_code == 0) {
                       alert("Something wrong, please contact dev.")
+                    } else if (rt_code == 2) {
+                      // 有重复的appid
+                      alert("Appid 重复");
                     } else if (rt_code == -2) {
                       location.href="./login.html";
                     } else {
                       console.log("Add success");
+                      $('#myModal1').modal('hide');
+                      $('#tb_departments').bootstrapTable('refresh');
                     }
-                    $('#myModal1').modal('hide');
-                    $('#tb_departments').bootstrapTable('refresh');
                   },
                   error : function() {
                     toastr.error('Error');
