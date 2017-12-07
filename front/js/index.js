@@ -52,6 +52,39 @@ function change_password() {
   }
 }
 
+function clear_cache() {
+
+  var requestData = {
+    "appids": $("#txt_cache_appid").val(),
+  };
+
+  $.ajax({
+    type : "get",
+    contentType : "text/html;charset=utf-8",
+    url : "../back/clear_cache.php",
+    data : requestData,
+    dataType : "json",
+    success : function(data) {
+      console.log(data);
+      var rt_code = data.rt_code;
+      if (rt_code == -1) {
+        alert("Something wrong, please contact dev.")
+      } else if (rt_code == 0) {
+        alert("Something wrong, please contact dev.")
+      } else if (rt_code == -2) {
+        location.href="./login.html";
+      } else if (rt_code == 1) {
+        alert("缓存清理成功");
+      }
+    },
+    error : function() {
+      toastr.error('Error');
+    },
+    complete : function() {
+    }
+  });
+}
+
 function set_show_urls() {
   console.log($("#txt_set_show_appids").val());
   console.log($("#txt_set_show_url").val());

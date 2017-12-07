@@ -114,6 +114,25 @@
             </form>
         </div>
     </div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">缓存</div>
+        <div class="panel-body">
+            <form id="formSearch" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_search_departmentname">AppID</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="空则清空所有缓存，App ID之间以英文逗号,隔开，如111,222" id="txt_cache_appid">
+                    </div>
+                    <div class="col-sm-4" style="text-align:left;">
+                        <button type="button" style="margin-left:50px"
+                        id="btn_query" class="btn btn-primary"
+                        onclick="clear_cache();">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <form class="add_form">
   		    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
